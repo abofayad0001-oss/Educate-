@@ -1,0 +1,285 @@
+/* =====================================================
+   EduCore Modern UI 2025
+   ===================================================== */
+
+/* ---------- Root ---------- */
+:root {
+  --primary: #2563eb;
+  --secondary: #0f172a;
+  --accent: #22c55e;
+  --bg: #f8fafc;
+  --card-bg: #ffffff;
+  --text-dark: #020617;
+  --text-light: #475569;
+  --radius: 18px;
+  --shadow: 0 15px 40px rgba(0,0,0,.08);
+}
+
+/* ---------- Reset ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Cairo", system-ui, sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text-dark);
+  line-height: 1.8;
+}
+
+/* ---------- Header ---------- */
+header {
+  background: linear-gradient(135deg, var(--primary), #1e40af);
+  padding: 20px 40px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  font-size: 30px;
+  font-weight: 800;
+}
+
+header nav a {
+  color: #fff;
+  margin-right: 20px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+header nav a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  padding: 90px 30px;
+  text-align: center;
+  background: linear-gradient(135deg, #1e293b, #020617);
+  color: #fff;
+}
+
+.hero h2 {
+  font-size: 44px;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 20px;
+  opacity: .9;
+}
+
+.hero button {
+  margin-top: 35px;
+  padding: 16px 40px;
+  background: var(--accent);
+  color: #022c22;
+  border: none;
+  border-radius: 40px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ---------- Filters ---------- */
+.filters {
+  padding: 30px;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filters input,
+.filters select {
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  font-size: 16px;
+  min-width: 220px;
+}
+
+/* ---------- Cards ---------- */
+#cards {
+  padding: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+.scholarship-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: .4s;
+}
+
+.scholarship-card:hover {
+  transform: translateY(-10px);
+}
+
+/* ---------- Card Image ---------- */
+.card-image {
+  position: relative;
+  height: 210px;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.flag {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: #fff;
+  border-radius: 50%;
+  padding: 5px;
+  box-shadow: var(--shadow);
+}
+
+.flag img {
+  width: 32px;
+  height: 32px;
+}
+
+/* ---------- Card Body ---------- */
+.card-body {
+  padding: 25px;
+}
+
+.card-body h3 {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.card-body .country {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.card-body .degree,
+.card-body .funded {
+  color: var(--text-light);
+  font-size: 15px;
+}
+
+.details-btn {
+  margin-top: 18px;
+  width: 100%;
+  padding: 14px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ---------- Modal ---------- */
+#detailsModal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-box {
+  background: #fff;
+  width: 95%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 24px;
+  padding: 35px;
+}
+
+/* ---------- Details ---------- */
+.details-header img {
+  width: 100%;
+  border-radius: 16px;
+  margin-bottom: 20px;
+}
+
+.details-header h2 {
+  font-size: 32px;
+}
+
+.details-section {
+  margin-top: 25px;
+}
+
+.details-section h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.details-section ul {
+  padding-right: 20px;
+}
+
+.details-section li {
+  margin-bottom: 8px;
+}
+
+/* ---------- Form ---------- */
+form input,
+form button {
+  width: 100%;
+  margin-top: 15px;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 16px;
+}
+
+form input {
+  border: 1px solid #e5e7eb;
+}
+
+form button {
+  background: var(--accent);
+  color: #022c22;
+  border: none;
+  font-weight: 800;
+}
+
+/* ---------- Close ---------- */
+#closeModal {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+/* ---------- Responsive ---------- */
+@media(max-width:768px) {
+  header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero h2 {
+    font-size: 32px;
+  }
+}
+
+/* =====================================================
+   End of style.css
+   ===================================================== */
+
