@@ -14,7 +14,7 @@ const scholarshipsData = [
   flag: "assets/flags/tr.png",
   degree: "بكالوريوس / ماجستير / دكتوراه",
   funded: "تمويل كامل",
-  image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f",
+  image: "https://tse3.mm.bing.net/th/id/OIP.NBYNCAWtSQw5quBJ8cIS0AHaE8?rs=1&pid=ImgDetMain&o=7&rm=3",
   description: "منحة الحكومة التركية من أشهر المنح العالمية الممولة بالكامل للطلاب الدوليين في مختلف التخصصات.",
   benefits: [
     "إعفاء كامل من الرسوم الدراسية",
@@ -42,7 +42,7 @@ const scholarshipsData = [
   flag: "assets/flags/ru.png",
   degree: "بكالوريوس / ماجستير / دكتوراه",
   funded: "تمويل كامل",
-  image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d",
+  image: "https://tse1.mm.bing.net/th/id/OIP.dAG3zZ3y-lf8TzV2lsl5ugHaFA?rs=1&pid=ImgDetMain&o=7&rm=3",
   description: "منحة الحكومة الروسية توفر فرص دراسة مجانية في الجامعات الروسية مع دعم حكومي.",
   benefits: [
     "إعفاء من الرسوم الدراسية",
@@ -67,7 +67,7 @@ const scholarshipsData = [
   flag: "assets/flags/cn.png",
   degree: "بكالوريوس / ماجستير / دكتوراه",
   funded: "تمويل كامل",
-  image: "https://images.unsplash.com/photo-1549692520-acc6669e2f0c",
+  image: "https://i.servimg.com/u/f40/12/60/84/01/2110.jpg",
   description: "منحة CSC الصينية من أكبر المنح العالمية وتغطي الدراسة والمعيشة بالكامل.",
   benefits: [
     "رسوم دراسية كاملة",
@@ -93,7 +93,7 @@ const scholarshipsData = [
   flag: "assets/flags/de.png",
   degree: "ماجستير / دكتوراه",
   funded: "تمويل كامل",
-  image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b",
+  image: "https://th.bing.com/th/id/OIP.Ey11KBsY08TLZV-O8YOerAHaEc?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3",
   description: "منحة DAAD الألمانية مخصصة للطلاب الدوليين للدراسة والبحث في ألمانيا.",
   benefits: [
     "راتب شهري",
@@ -117,7 +117,7 @@ const scholarshipsData = [
   flag: "assets/flags/gb.png",
   degree: "ماجستير",
   funded: "تمويل كامل",
-  image: "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a",
+  image: "https://tse1.mm.bing.net/th/id/OIP.MYVJpiq3Obe4DRSBU29UegHaDh?rs=1&pid=ImgDetMain&o=7&rm=3",
   description: "منحة تشيفنينغ البريطانية تهدف لإعداد قادة المستقبل من جميع أنحاء العالم.",
   benefits: [
     "رسوم دراسية كاملة",
@@ -141,7 +141,7 @@ const scholarshipsData = [
   flag: "assets/flags/ro.png",
   degree: "بكالوريوس / ماجستير / دكتوراه",
   funded: "تمويل كامل",
-  image: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f",
+  image: "https://png.pngtree.com/background/20210716/original/pngtree-romania-wavy-flag-image-background-picture-image_1335422.jpg",
   description: "منحة دراسية ممولة بالكامل من الحكومة الرومانية للطلاب الدوليين.",
   benefits: [
     "رسوم دراسية مجانية",
@@ -165,8 +165,7 @@ const scholarshipsData = [
   flag: "assets/flags/qa.png",
   degree: "ماجستير / دكتوراه",
   funded: "تمويل كامل",
-  image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1",
-  description: "منحة جامعة حمد بن خليفة من أفضل المنح في الشرق الأوسط.",
+  image: "https://cdn.alromaizan.com/image/upload/v1679132325/media/blog/si-lets-celebrate-qatar-national-day-with-traditional-jewellery.webp",
   benefits: [
     "رسوم كاملة",
     "راتب شهري",
@@ -189,7 +188,7 @@ const scholarshipsData = [
   flag: "assets/flags/ca.png",
   degree: "بكالوريوس / ماجستير",
   funded: "تمويل جزئي",
-  image: "https://images.unsplash.com/photo-1519455953755-af066f52f1ea",
+  image: "https://th.bing.com/th/id/OIP.Sk-EHSJwkOsORXxKkR5aoQHaEb?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3",
   description: "منح حكومية كندية لدعم الطلاب الدوليين في الجامعات الكندية.",
   benefits: [
     "دعم مالي",
@@ -211,7 +210,7 @@ const scholarshipsData = [
   flag: "assets/flags/jp.png",
   degree: "بكالوريوس / ماجستير / دكتوراه",
   funded: "تمويل كامل",
-  image: "https://images.unsplash.com/photo-1505060898288-4c5b5d5e1f55",
+  image: "https://tse2.mm.bing.net/th/id/OIP.I5nZ-e0HcRYJ0d5BtBOf9AHaFj?rs=1&pid=ImgDetMain&o=7&rm=3",
   description: "منحة الحكومة اليابانية ممولة بالكامل عبر وزارة التعليم.",
   benefits: [
     "رسوم دراسية",
@@ -234,7 +233,7 @@ const scholarshipsData = [
   flag: "assets/flags/hu.png",
   degree: "بكالوريوس / ماجستير / دكتوراه",
   funded: "تمويل كامل",
-  image: "https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d",
+  image: "https://tse4.mm.bing.net/th/id/OIP.n6BGtUFh3ujW7LwiI8yrzgHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
   description: "منحة مجرية ممولة بالكامل للطلاب الدوليين.",
   benefits: [
     "رسوم كاملة",
@@ -247,7 +246,6 @@ const scholarshipsData = [
     "لغة إنجليزية"
   ]
 }
-
 /* ====== استكمال حتى 25 منحة سيتم في الرسالة التالية ====== */
 ];
 
