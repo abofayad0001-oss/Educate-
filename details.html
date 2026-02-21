@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل المنحة | EduCore</title>
+
+    <!-- Fonts: Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons: Lucide (CDN) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .details-hero {
+            padding-top: 140px;
+            padding-bottom: 60px;
+            background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .details-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.05), transparent);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: var(--transition);
+        }
+
+        .back-btn:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .sticky-card {
+            position: sticky;
+            top: 100px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-title i {
+            color: var(--primary);
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            border: 1px solid var(--border);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .feature-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .feature-item i {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .content-block {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 2rem;
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .sticky-card {
+                position: static;
+                margin-bottom: 2rem;
+            }
+
+            .details-hero {
+                padding-top: 100px;
+            }
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 0.8rem;
+            border: 1px solid var(--border);
+            background: var(--gray-light);
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+        }
+
+        .input-group label {
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .modal-content {
+            background: white;
+            width: 100%;
+            max-width: 550px;
+            max-height: 90vh;
+            border-radius: 2rem;
+            padding: 2.5rem;
+            position: relative;
+            overflow-y: auto;
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            width: 40px;
+            height: 40px;
+            background: var(--gray-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-btn:hover {
+            background: #ffe4e6;
+            color: #ef4444;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="glass-header header-scrolled">
+        <div class="container flex-between">
+            <div class="logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <h1 class="font-black text-2xl">Edu<span class="text-primary">Core</span></h1>
+                </a>
+            </div>
+            <nav class="desktop-nav">
+                <ul class="flex gap-8">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="about.html">عن المنصة</a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions flex items-center gap-4">
+                <a href="https://wa.me/201124908798" target="_blank" class="btn-primary flex items-center gap-2">
+                    <i data-lucide="whatsapp" style="width: 18px; height: 18px;"></i>
+                    <span class="desktop-only">تواصل معنا</span>
+                </a>
+                <button class="mobile-toggle btn-outline p-2" id="mobile-menu-btn">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="detailsApp">
+        <!-- Hero Section -->
+        <section class="details-hero">
+            <div class="container">
+                <a href="index.html" class="back-btn">
+                    <i data-lucide="arrow-right"></i>
+                    العودة لكل المنح
+                </a>
+
+                <div id="heroContent">
+                    <!-- Dynamic -->
+                    <div class="animate-pulse flex-center py-20">جاري تحميل تفاصيل المنحة...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <section class="py-16">
+            <div class="container grid-2" style="grid-template-columns: 2fr 1fr; gap: 3rem;">
+                <!-- Content Col -->
+                <div id="mainContent">
+                    <!-- Dynamic -->
+                </div>
+
+                <!-- Sidebar Col -->
+                <aside id="sidebarContent">
+                    <!-- Dynamic -->
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <!-- WhatsApp Application Modal -->
+    <div id="applyModal" class="modal-overlay">
+        <div class="modal-content text-right">
+            <div class="close-btn" onclick="closeModal()">
+                <i data-lucide="x"></i>
+            </div>
+            <h3 class="font-black text-2xl mb-2">نموذج التقديم عبر الواتساب</h3>
+            <p class="text-muted text-sm mb-8">يرجى ملء كافة البيانات التالية لضمان معالجة طلبك بدقة</p>
+
+            <form id="applyForm" class="space-y-4">
+                <div class="input-group">
+                    <label>الاسم الكامل</label>
+                    <input type="text" id="studentName" placeholder="أحمد محمد علي" class="form-input" required>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="input-group">
+                        <label>السن</label>
+                        <input type="number" id="studentAge" placeholder="20" class="form-input" required>
+                    </div>
+                    <div class="input-group">
+                        <label>رقم الهاتف (واتساب)</label>
+                        <input type="tel" id="studentPhone" placeholder="+201..." class="form-input" required>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>الدولة والعنوان</label>
+                    <input type="text" id="studentAddress" placeholder="القاھرة، مصر" class="form-input" required>
+                </div>
+                <div class="input-group">
+                    <label>المؤهل الحالي / السنة الدراسية</label>
+                    <input type="text" id="studentQualification" placeholder="ثانوية عامة / تخرجت من الجامعة"
+                        class="form-input" required>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="input-group">
+                        <label>المرحلة المطلوبة</label>
+                        <select id="studyLevel" class="form-input">
+                            <option value="بكالوريوس">بكالوريوس</option>
+                            <option value="ماجستير">ماجستير</option>
+                            <option value="دكتوراه">دكتوراه</option>
+                            <option value="لغة">دراسة لغة فقط</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>التخصص المطلوب</label>
+                        <input type="text" id="specialization" placeholder="الطب البشري / الهندسة" class="form-input"
+                            required>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary w-full py-4 text-center mt-6 shadow-xl shadow-primary/20">
+                    <i data-lucide="send"></i>
+                    تأكيد البيانات وإرسال الطلب
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="modern-footer">
+        <div class="container py-12 text-center text-muted text-sm border-t">
+            <p>جميع الحقوق محفوظة © 2024 منصة EduCore. صمم بحب لخدمة الطلاب.</p>
+        </div>
+    </footer>
+
+    <!-- Integrated Data + Logic for Details -->
+    <script src="app.js"></script>
+    <script>
+        const modal = document.getElementById('applyModal');
+
+        function openModal() {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            if (window.lucide) lucide.createIcons();
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) closeModal();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const scholarshipId = urlParams.get('id');
+
+            if (!scholarshipId || typeof scholarshipsData === 'undefined') {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            const scholarship = scholarshipsData.find(s => s.id === scholarshipId);
+            if (!scholarship) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            // Update Page Title
+            document.title = `${scholarship.title} | EduCore`;
+
+            // Render Hero
+            const heroContent = document.getElementById('heroContent');
+            heroContent.innerHTML = `
+                <div class="animate-fade-in-right">
+                    <div class="badge mb-4">${scholarship.country} | ${scholarship.degree}</div>
+                    <h1 class="text-5xl font-black mb-6 leading-tight max-w-3xl">${scholarship.title}</h1>
+                    <div class="flex gap-6 mt-4">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="building-2" class="text-primary"></i>
+                            <span class="font-bold">${scholarship.provider}</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="calendar" class="text-accent"></i>
+                            <span class="font-bold text-accent">آخر موعد: ${scholarship.deadline}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Render Main Content
+            const mainContent = document.getElementById('mainContent');
+            mainContent.innerHTML = `
+                <div class="content-block animate-fade-in">
+                    <h3 class="section-title"><i data-lucide="info"></i> وصف المنحة</h3>
+                    <p class="text-muted leading-relaxed text-lg mb-8">${scholarship.description}</p>
+                    
+                    <h3 class="section-title"><i data-lucide="star"></i> ما الذي توفره هذه المنحة؟</h3>
+                    <div class="feature-list">
+                        ${scholarship.benefits.map(b => `
+                            <div class="feature-item">
+                                <i data-lucide="check-circle-2"></i>
+                                <p class="font-bold text-sm text-main">${b}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <h3 class="section-title"><i data-lucide="list-checks"></i> شروط ومعايير القبول</h3>
+                    <ul class="space-y-4 mb-8">
+                        ${scholarship.requirements.map(r => `
+                            <li class="flex gap-3 text-muted">
+                                <i data-lucide="chevron-left" class="text-primary mt-1" style="width: 16px;"></i>
+                                <span>${r}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+
+                    <h3 class="section-title"><i data-lucide="graduation-cap"></i> التخصصات المتاحة، وأبرزها:</h3>
+                    <div class="flex flex-wrap gap-3 mb-6">
+                        ${scholarship.specializations.slice(0, 3).map(s => `
+                            <span class="px-4 py-2 bg-indigo-50 text-primary rounded-xl font-bold text-sm border border-indigo-100">${s}</span>
+                        `).join('')}
+                    </div>
+                    <div class="p-4 bg-blue-50 border border-blue-100 rounded-xl flex items-center gap-3">
+                        <i data-lucide="info" class="text-primary"></i>
+                        <p class="text-sm font-bold text-primary">ملاحظة: كافة التخصصات الأكاديمية متاحة للتقديم في هذه المنحة.</p>
+                    </div>
+                </div>
+
+                <div class="content-block animate-fade-in" style="animation-delay: 0.2s">
+                    <h3 class="section-title"><i data-lucide="file-text"></i> الأوراق والملفات المطلوبة</h3>
+                    <p class="text-muted mb-6">يرجى تحضير الملفات التالية لضمان معالجة طلبك (صور واضحة أو PDF):</p>
+                    <div class="grid-2" style="gap: 1rem;">
+                        <div class="p-4 bg-gray-50 rounded-xl border flex items-center gap-3">
+                            <i data-lucide="file-check" class="text-primary"></i>
+                            <span class="text-sm font-bold">جواز سفر أو هوية شخصية</span>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-xl border flex items-center gap-3">
+                            <i data-lucide="file-check" class="text-primary"></i>
+                            <span class="text-sm font-bold">بيان درجات (أحدث مرحلة)</span>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-xl border flex items-center gap-3">
+                            <i data-lucide="file-check" class="text-primary"></i>
+                            <span class="text-sm font-bold">الشهادة الدراسية</span>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-xl border flex items-center gap-3">
+                            <i data-lucide="file-check" class="text-primary"></i>
+                            <span class="text-sm font-bold">السيرة الذاتية (CV)</span>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-xl border flex items-center gap-3">
+                            <i data-lucide="file-check" class="text-primary"></i>
+                            <span class="text-sm font-bold">خطاب الدافع (SOP)</span>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-xl border flex items-center gap-3">
+                            <i data-lucide="file-check" class="text-primary"></i>
+                            <span class="text-sm font-bold">خطاب توصية (Recommendation)</span>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-xl border flex items-center gap-3">
+                            <i data-lucide="file-check" class="text-primary"></i>
+                            <span class="text-sm font-bold">شهادات داعمة / لغة (اختياري)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-block animate-fade-in" style="animation-delay: 0.4s; border: 2px dashed var(--primary); background: #f5f3ff;">
+                    <div class="flex items-start gap-4">
+                        <div class="p-3 bg-primary rounded-2xl text-white">
+                            <i data-lucide="shield-check" style="width: 32px; height: 32px;"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-black text-xl mb-2">لماذا التقديم عبر EduCore؟ (ميزة حصرية)</h3>
+                            <p class="text-muted leading-relaxed">
+                                نحن في **EduCore** نتولى عنك كافة الإجراءات التي يصعب على الطالب القيام بها بمفرده:
+                                <br><br>
+                                ✅ **إنشاء السيرة الذاتية (CV)** احترافية متوافقة مع معايير الجامعات الدولية.
+                                <br>
+                                ✅ **صياغة خطاب الدافع (SOP)** بشكل مقنع يبرز نقاط قوتك.
+                                <br>
+                                ✅ **استخراج وتجهيز خطابات التوصية (Recommendation Letters)**.
+                                <br>
+                                ✅ **توفير وتجهيز شهادات داعمة** لملف التقديم.
+                                <br><br>
+                                <span class="font-bold text-primary">هذه ميزات حصرية لا تقدمها أي جهة أخرى بهذا المستوى. الطالب لا يفعل أي شيء سوى إرسال بياناته الأساسية، ونحن نبني له ملفاً أكاديمياً قوياً!</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Render Sidebar
+            const sidebarContent = document.getElementById('sidebarContent');
+            sidebarContent.innerHTML = `
+                <div class="sticky-card animate-fade-in-left">
+                    <div class="content-block p-1" style="overflow: hidden; padding: 0; position: relative;">
+                        <img src="${scholarship.image}" alt="${scholarship.title}" style="width: 100%; height: 250px; object-fit: cover;">
+                        <div class="country-flag" style="top: 1rem; right: 1rem; bottom: auto; position: absolute;">
+                             <img src="https://flagcdn.com/w80/${scholarship.countryCode}.png" alt="${scholarship.country}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex-between mb-6">
+                                <span class="text-muted text-sm">نوع التمويل</span>
+                                <span class="px-3 py-1 bg-accent/10 text-accent rounded-lg font-bold">تمويل ${scholarship.funded}</span>
+                            </div>
+                            <div class="flex-between mb-8">
+                                <span class="text-muted text-sm">بلد الدراسة</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="font-bold">${scholarship.country}</span>
+                                </div>
+                            </div>
+
+                            <button onclick="openModal()" class="btn-primary w-full py-4 text-center">
+                                <i data-lucide="message-circle"></i>
+                                عرض التفاصيل والتقديم عبر واتساب
+                            </button>
+                            <p class="text-center text-xs text-faint mt-4">سيتم الرد عليك خلال أقل من 12 ساعة</p>
+                        </div>
+                    </div>
+
+                    <div class="content-block mt-6">
+                        <h4 class="font-bold mb-4">لماذا تقدم عبر EduCore؟</h4>
+                        <ul class="space-y-3 text-sm text-muted">
+                            <li class="flex gap-2">✅ مراجعة دقيقة لملفاتك</li>
+                            <li class="flex gap-2">✅ ترجمة احترافية للشهادات</li>
+                            <li class="flex gap-2">✅ تأمين أعلى فرص القبول</li>
+                            <li class="flex gap-2">✅ <a href="privacy.html" style="color: inherit; text-decoration: underline;">سياسة الخصوصية والبيانات</a></li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+
+            // Logic for Form Submission
+            const applyForm = document.getElementById('applyForm');
+            applyForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const name = document.getElementById('studentName').value;
+                const age = document.getElementById('studentAge').value;
+                const phone = document.getElementById('studentPhone').value;
+                const address = document.getElementById('studentAddress').value;
+                const qualification = document.getElementById('studentQualification').value;
+                const level = document.getElementById('studyLevel').value;
+                const major = document.getElementById('specialization').value;
+
+                const message = `*طلب تقديم جديد عبر EduCore*%0A%0A` +
+                    `*المنحة:* ${scholarship.title}%0A` +
+                    `----------------------------%0A` +
+                    `*الاسم:* ${name}%0A` +
+                    `*السن:* ${age}%0A` +
+                    `*رقم الهاتف:* ${phone}%0A` +
+                    `*الدولة/العنوان:* ${address}%0A` +
+                    `*المؤهل الحالي:* ${qualification}%0A` +
+                    `*المرحلة المطلوبة:* ${level}%0A` +
+                    `*التخصص المطلوب:* ${major}%0A` +
+                    `----------------------------`;
+
+                const whatsappUrl = `https://wa.me/201124908798?text=${message}`;
+                window.open(whatsappUrl, '_blank');
+                closeModal();
+            });
+
+            if (window.lucide) lucide.createIcons();
+        });
+    </script>
+</body>
+
+</html>
