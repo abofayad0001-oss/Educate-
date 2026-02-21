@@ -173,17 +173,19 @@ img {
 }
 
 .text-2xl {
-  font-size: 1.4rem;
+  font-size: 1.25rem;
 }
 
 .text-4xl {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
 }
 
 .text-6xl {
-  font-size: 2.2rem;
+  font-size: 1.75rem;
   line-height: 1.2;
 }
+
+/* أصغر للموبايل لتجنب تداخل النصوص */
 
 @media (min-width: 768px) {
   .text-lg {
@@ -483,9 +485,9 @@ img {
 
 /* Hero V2 - Mobile First */
 .hero-v2 {
-  padding-top: 120px;
-  /* أصغر للموبايل */
-  padding-bottom: 60px;
+  padding-top: 100px;
+  /* تقليل المسافة العلوية لتبدأ الصفحة مبكراً */
+  padding-bottom: 40px;
   position: relative;
   overflow: hidden;
   text-align: center;
