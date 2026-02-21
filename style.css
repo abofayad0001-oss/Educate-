@@ -173,16 +173,16 @@ img {
 }
 
 .text-2xl {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
 }
 
 .text-4xl {
-  font-size: 1.5rem;
+  font-size: 1.35rem;
 }
 
 .text-6xl {
-  font-size: 1.75rem;
-  line-height: 1.2;
+  font-size: 1.55rem;
+  line-height: 1.1;
 }
 
 /* أصغر للموبايل لتجنب تداخل النصوص */
@@ -351,10 +351,11 @@ img {
   left: 0;
   right: 0;
   z-index: 1000;
-  padding: 0.75rem 0;
-  /* أصغر للموبايل */
+  padding: 0.5rem 0;
+  /* تقليل الحشو لزيادة مساحة العرض */
   background: var(--bg-header);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
   transition: var(--transition);
 }
@@ -381,15 +382,17 @@ img {
 
 .desktop-nav.mobile-active {
   display: block;
-  position: absolute;
-  top: 100%;
+  position: fixed;
+  /* تغيير لـ fixed لضمان التغطية الصحيحة */
+  top: 60px;
+  /* الارتفاع التقريبي للهيدر */
   left: 0;
   right: 0;
+  bottom: 0;
   background: white;
-  padding: 1.5rem;
-  border-bottom: 2px solid var(--primary);
-  box-shadow: var(--shadow-lg);
-  z-index: 1000;
+  padding: 2rem;
+  z-index: 999;
+  overflow-y: auto;
 }
 
 .desktop-nav ul {
