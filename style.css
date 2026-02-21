@@ -354,6 +354,47 @@ img {
   border: 1px solid var(--glass-border);
 }
 
+@media (max-width: 768px) {
+  .mobile-toggle {
+    display: none !important;
+    /* إخفاء الثلاث شرطات */
+  }
+
+  .desktop-nav {
+    display: flex !important;
+    /* إظهار الروابط دائماً */
+    position: static !important;
+    width: auto !important;
+    background: transparent !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .desktop-nav ul {
+    flex-direction: row !important;
+    gap: 0.5rem !important;
+    /* مسافات صغيرة جداً */
+    align-items: center;
+  }
+
+  .desktop-nav a {
+    font-size: 0.65rem !important;
+    /* حجم خط صغير جداً ليناسب العرض */
+    padding: 0.2rem !important;
+  }
+
+  .glass-header .container {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    padding: 0 0.5rem !important;
+    /* تقليل هوامش الحاوية */
+  }
+
+  .logo h1 {
+    font-size: 0.9rem !important;
+  }
+}
+
 .glass-header {
   position: fixed;
   top: 0;
