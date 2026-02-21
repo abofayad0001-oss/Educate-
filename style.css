@@ -32,7 +32,6 @@
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Base Reset */
 * {
   margin: 0;
   padding: 0;
@@ -42,17 +41,25 @@
 
 body {
   font-family: 'Cairo', sans-serif;
+  margin: 0;
   background-color: var(--bg-body);
   color: var(--text-main);
   line-height: 1.6;
   overflow-x: hidden;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* Layout Utilities */
 .container {
-  max-width: 1280px;
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 15px;
 }
 
 .flex {
@@ -795,11 +802,6 @@ html {
   scroll-behavior: smooth;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
 
 /* Fixed Header Blur for better performance on mobile */
 .glass-header {
