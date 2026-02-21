@@ -432,15 +432,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // State
     const container = document.getElementById('scholarshipsContainer');
+    const paginationContainer = document.getElementById('paginationContainer');
     const searchInput = document.getElementById('searchInput');
     const countryFilter = document.getElementById('countryFilter');
     const fundingFilter = document.getElementById('fundingFilter');
 
-    function renderScholarships(data) {
+    let currentPage = 1;
+    const itemsPerPage = 10;
+    let filteredData = [...scholarshipsData];
+
+    function renderScholarships() {
         if (!container) return;
         container.innerHTML = '';
 
-        if (data.length === 0) {
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        const paginatedData = filteredData.slice(startIndex, endIndex);
+
+        if (paginatedData.length === 0 && currentPage === 1) {
             container.innerHTML = `
                 <div class="no-results text-center py-20 bg-white rounded-2xl border flex-center flex-column gap-4" style="grid-column: 1 / -1; width: 100%;">
                     <i data-lucide="info" style="width: 48px; height: 48px; color: var(--text-faint);"></i>
@@ -452,7 +461,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        data.forEach((item, index) => {
+        paginatedData.forEach((item, index) => {
             const card = document.createElement('div');
             card.className = 'scholarship-card animate-zoom-in';
             card.style.animationDelay = `${index * 0.05}s`;
@@ -476,13 +485,9 @@ document.addEventListener('DOMContentLoaded', () => {
                             <i data-lucide="dollar-sign"></i>
                             <span>تمويل ${item.funded}</span>
                         </div>
-                        <div class="info-item">
-                            <i data-lucide="calendar"></i>
-                            <span>الموعد: ${item.deadline}</span>
-                        </div>
                     </div>
-                    <button class="btn-primary w-full view-details" data-id="${item.id}">
-                        عرض التفاصيل والتقديم
+                    <button class="btn-primary w-full view-details" data-id="${item.id}" style="padding: 0.6rem; font-size: 0.8rem; margin-top: 0.5rem;">
+                        التفاصيل
                     </button>
                 </div>
             `;
@@ -497,16 +502,38 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.location.href = `details.html?id=${id}`;
             });
         });
+
+        renderPagination();
+    }
+
+    function renderPagination() {
+        if (!paginationContainer) return;
+        paginationContainer.innerHTML = '';
+
+        const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+        if (totalPages <= 1) return;
+
+        for (let i = 1; i <= totalPages; i++) {
+            const btn = document.createElement('button');
+            btn.className = `btn-page ${i === currentPage ? 'active' : ''}`;
+            btn.innerText = i;
+            btn.addEventListener('click', () => {
+                currentPage = i;
+                renderScholarships();
+                window.scrollTo({ top: container.offsetTop - 100, behavior: 'smooth' });
+            });
+            paginationContainer.appendChild(btn);
+        }
     }
 
     function handleFilters() {
-        const searchTerm = searchInput.value.toLowerCase();
-        const countryValue = countryFilter.value;
-        const fundingValue = fundingFilter.value;
+        const searchTerm = (searchInput ? searchInput.value : "").toLowerCase();
+        const countryValue = countryFilter ? countryFilter.value : "all";
+        const fundingValue = fundingFilter ? fundingFilter.value : "all";
 
-        const filtered = scholarshipsData.filter(item => {
+        filteredData = scholarshipsData.filter(item => {
             const matchesSearch = item.title.toLowerCase().includes(searchTerm) ||
-                item.specializations.some(s => s.toLowerCase().includes(searchTerm)) ||
+                (item.specializations && item.specializations.some(s => s.toLowerCase().includes(searchTerm))) ||
                 item.country.includes(searchTerm);
 
             const matchesCountry = countryValue === 'all' || item.countryCode === countryValue;
@@ -515,7 +542,8 @@ document.addEventListener('DOMContentLoaded', () => {
             return matchesSearch && matchesCountry && matchesFunding;
         });
 
-        renderScholarships(filtered);
+        currentPage = 1;
+        renderScholarships();
     }
 
     if (searchInput) searchInput.addEventListener('input', handleFilters);
@@ -533,7 +561,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    renderScholarships(scholarshipsData);
+    renderScholarships();
 });
 
 // Custom CSS Injection for line-clamps
@@ -549,6 +577,10 @@ style.textContent = `
     .bg-gray-50 { background-color: #f9fafb; }
     .bg-indigo-50 { background-color: #eef2ff; }
     .flex-column { flex-direction: column; }
+    .mobile-only { display: none; }
+    @media (max-width: 1023px) {
+        .mobile-only { display: block; }
+    }
 `;
 document.head.appendChild(style);
 // Mobile Menu Logic

@@ -587,12 +587,13 @@ img {
   outline: none;
 }
 
-/* Grid - Mobile First */
+/* Grid - Mobile First (Updated to 2 Columns for Mobile) */
 .scholarships-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  /* عمود واحد افتراضي للموبايل */
-  gap: 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  /* عمودين للموبايل */
+  gap: 0.75rem;
+  /* مسافة أصغر للعمودين */
 }
 
 @media (min-width: 768px) {
@@ -624,9 +625,16 @@ img {
 }
 
 .card-header {
-  height: 200px;
+  height: 120px;
+  /* ارتفاع أقل للموبايل */
   position: relative;
   overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .card-header {
+    height: 200px;
+  }
 }
 
 .card-header img {
@@ -655,18 +663,26 @@ img {
 
 .country-flag {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
-  width: 45px;
-  height: 45px;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 30px;
+  /* أصغر للموبايل */
+  height: 30px;
   background: white;
   border-radius: 50%;
-  padding: 4px;
+  padding: 2px;
   box-shadow: var(--shadow-md);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2;
+}
+
+@media (min-width: 768px) {
+  .country-flag {
+    width: 45px;
+    height: 45px;
+  }
 }
 
 .country-flag img {
@@ -677,12 +693,15 @@ img {
 }
 
 .card-body {
-  padding: 2rem 1.5rem 1.5rem;
+  padding: 1rem 0.75rem;
+  /* تقليل البادينج للعمودين */
 }
 
 .card-body h3 {
-  margin-bottom: 0.75rem;
-  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  /* خط أصغر ليناسب العمودين */
+  line-height: 1.3;
 }
 
 .card-info {
@@ -695,9 +714,10 @@ img {
 .info-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.3rem;
   color: var(--text-muted);
-  font-size: 0.85rem;
+  font-size: 0.75rem;
+  /* أصغر للعمودين */
 }
 
 .info-item i {
@@ -705,15 +725,28 @@ img {
   height: 16px;
 }
 
-/* Pagination Buttons */
+/* Pagination Container (Modified for 1, 2, 3...) */
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+}
+
 .btn-page {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
+  min-width: 40px;
+  height: 40px;
+  border-radius: 8px;
   border: 1px solid var(--border);
+  background: white;
+  color: var(--text-main);
   font-weight: 700;
   cursor: pointer;
   transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-page:hover,
@@ -721,6 +754,20 @@ img {
   background: var(--primary);
   color: white;
   border-color: var(--primary);
+}
+
+/* Details Page Grid */
+.grid-details {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .grid-details {
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+  }
 }
 
 /* Modal System */
@@ -758,7 +805,7 @@ img {
   border-radius: 2rem;
   overflow-y: auto;
   position: relative;
-  background: rgba(255, 255, 255, 0.9);
+  background: white;
 }
 
 .btn-close {
@@ -862,28 +909,6 @@ html {
   }
 }
 
-/* Smooth Scrolling & Performance */
-html {
-  scroll-behavior: smooth;
-}
-
-
-/* Fixed Header Blur for better performance on mobile */
-.glass-header {
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-
-/* Tap Highlight Removal for Mobile */
-* {
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* Better Card Spacing on Mobile */
-.scholarship-card {
-  margin-bottom: 1rem;
-}
-
 .desktop-only {
   display: none;
 }
@@ -896,4 +921,12 @@ html {
 
 .mobile-toggle {
   display: none;
+}
+
+@media (max-width: 1023px) {
+  .mobile-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
