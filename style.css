@@ -351,13 +351,24 @@ img {
   left: 0;
   right: 0;
   z-index: 1000;
-  padding: 0.5rem 0;
-  /* تقليل الحشو لزيادة مساحة العرض */
+  padding: 0.25rem 0;
+  /* تصغير أصغر ما يمكن */
   background: var(--bg-header);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
   transition: var(--transition);
+}
+
+@media (max-width: 480px) {
+  .logo h1 {
+    font-size: 1.1rem !important;
+    /* تصغير اللوجو بشكل جذري */
+  }
+
+  .glass-header {
+    padding: 0.15rem 0 !important;
+  }
 }
 
 .header-container {
@@ -384,13 +395,14 @@ img {
   display: block;
   position: fixed;
   /* تغيير لـ fixed لضمان التغطية الصحيحة */
-  top: 60px;
+  top: 45px;
+  /* تقليل الارتفاع المتوقع للهيدر الأصغر */
   /* الارتفاع التقريبي للهيدر */
   left: 0;
   right: 0;
   bottom: 0;
   background: white;
-  padding: 2rem;
+  padding: 2.5rem 1.5rem;
   z-index: 999;
   overflow-y: auto;
 }
