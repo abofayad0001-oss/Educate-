@@ -357,12 +357,12 @@ img {
 @media (max-width: 768px) {
   .mobile-toggle {
     display: none !important;
-    /* إخفاء الثلاث شرطات */
+    /* حذف الثلاث شرطات نهائياً */
   }
 
   .desktop-nav {
     display: flex !important;
-    /* إظهار الروابط دائماً */
+    /* إظهار الروابط دائماً وبشكل مباشر */
     position: static !important;
     width: auto !important;
     background: transparent !important;
@@ -372,26 +372,39 @@ img {
 
   .desktop-nav ul {
     flex-direction: row !important;
-    gap: 0.5rem !important;
-    /* مسافات صغيرة جداً */
+    /* ترتيب أفقي كالكمبيوتر */
+    gap: 0.4rem !important;
+    /* مسافات ضيقة للعرض المحدود */
     align-items: center;
   }
 
   .desktop-nav a {
-    font-size: 0.65rem !important;
-    /* حجم خط صغير جداً ليناسب العرض */
-    padding: 0.2rem !important;
+    font-size: 0.6rem !important;
+    /* خط صغير جداً ليناسب عرض الموبايل */
+    padding: 0.1rem 0.2rem !important;
+    white-space: nowrap;
   }
 
   .glass-header .container {
     flex-direction: row !important;
     justify-content: space-between !important;
-    padding: 0 0.5rem !important;
-    /* تقليل هوامش الحاوية */
+    padding: 0 0.25rem !important;
+    /* تقليل هوامش الجوانب لأقصى درجة */
   }
 
   .logo h1 {
-    font-size: 0.9rem !important;
+    font-size: 0.85rem !important;
+    /* تصغير اللوجو */
+  }
+
+  .nav-actions {
+    gap: 0.3rem !important;
+  }
+
+  .nav-actions .btn-primary {
+    padding: 0.3rem 0.6rem !important;
+    font-size: 0.65rem !important;
+    /* تصغير زر تواصل معنا */
   }
 }
 
@@ -429,6 +442,26 @@ img {
   .mobile-toggle {
     padding: 0.4rem !important;
   }
+
+  /* تصغير إضافي للنصوص لتجنب التداخل في الهيرو */
+  .text-6xl {
+    font-size: 1.25rem !important;
+  }
+
+  /* تصغير نص EduCore الكبير */
+  .text-4xl {
+    font-size: 1.15rem !important;
+  }
+
+  .text-2xl {
+    font-size: 1.05rem !important;
+  }
+
+  .hero-v2 {
+    padding-top: 60px !important;
+  }
+
+  /* تقليل المسافة العلوية لرفع الكلام */
 }
 
 .header-container {
